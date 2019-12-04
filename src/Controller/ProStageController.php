@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProStageController extends AbstractController
 {
     /**
-     * @Route("/", name="pro_stage")
+     * @Route("/", name="pro_stage_acceuil")
      */
     public function index()
     {
@@ -16,12 +16,12 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/stages/221", name="pro_stage_stage_221")
+     * @Route("/stages/{id}", name="pro_stage_details_stage")
      */
-    public function afficherDetailsStage()
+    public function afficherDetailsStage($id)
     {
         return $this->render('pro_stage/affichageStage.html.twig',
-        [ 'idStage' => 125]);
+        [ 'idStage' => $id]);
     }
 
 }
