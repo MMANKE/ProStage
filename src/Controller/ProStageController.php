@@ -14,4 +14,13 @@ class ProStageController extends AbstractController
     {
         return $this->render('pro_stage/index.html.twig');
     }
+
+    /**
+     * @Route("/stages/221", name="pro_stage_stage_221")
+     */
+    public function afficherDetailsStage221()
+    {
+        return $this->render('pro_stage/affichageStage.html.twig');
+    }
+
 }
