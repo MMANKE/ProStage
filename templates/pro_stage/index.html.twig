@@ -1,4 +1,21 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <h1>Bienvenue sur ProStage !</h1>
 <p>
-    Quesque-ce ProStage ? ProStage est une plateforme de mise en contact d'entreprises et d'étudiant en recherche de stage.
+    Vous trouverez ici les dernières offres de stages mise en ligne
 </p>
+
+<ul>
+  <li>
+    <a href="{{ path('pro_stage_details_stage',{id:25})}}"> Stage sanofi</a>
+  </li>
+  <li>
+    <a href="{{ path('pro_stage_details_stage',{id:254})}}"> Stage CGI</a>
+  </li>
+  <li>
+    <a href="{{ path('pro_stage_details_stage',{id:38})}}"> Stage TurboMeca</a>
+  </li>
+</ul>
+{% endblock %}
