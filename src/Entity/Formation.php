@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\FormationRepository")
  */
-class Entreprise
+class Formation
 {
     /**
      * @ORM\Id()
@@ -19,22 +19,17 @@ class Entreprise
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $code;
+
+    /**
      * @ORM\Column(type="string", length=200)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=200)
-     */
-    private $activite;
-
-    /**
-     * @ORM\Column(type="string", length=800)
-     */
-    private $adresse;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="entreprise")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="formations")
      */
     private $stages;
 
@@ -48,6 +43,18 @@ class Entreprise
         return $this->id;
     }
 
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
     public function getNom(): ?string
     {
         return $this->nom;
@@ -56,30 +63,6 @@ class Entreprise
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getActivite(): ?string
-    {
-        return $this->activite;
-    }
-
-    public function setActivite(string $activite): self
-    {
-        $this->activite = $activite;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): self
-    {
-        $this->adresse = $adresse;
 
         return $this;
     }
@@ -96,7 +79,7 @@ class Entreprise
     {
         if (!$this->stages->contains($stage)) {
             $this->stages[] = $stage;
-            $stage->setEntreprise($this);
+            $stage->addFormation($this);
         }
 
         return $this;
@@ -106,10 +89,7 @@ class Entreprise
     {
         if ($this->stages->contains($stage)) {
             $this->stages->removeElement($stage);
-            // set the owning side to null (unless already changed)
-            if ($stage->getEntreprise() === $this) {
-                $stage->setEntreprise(null);
-            }
+            $stage->removeFormation($this);
         }
 
         return $this;
