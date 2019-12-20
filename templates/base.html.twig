@@ -24,22 +24,24 @@
       			<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
       				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       					<span class="navbar-toggler-icon"></span>
-      				</button> <a class="navbar-brand" href="#">ProStage</a>
+      				</button>
       				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       					<ul class="navbar-nav">
       						<li class="nav-item active">
-      							 <a class="nav-link" href="#">Offres de stage <span class="sr-only">(current)</span></a>
-      						</li>
-      						<li class="nav-item">
-      							 <a class="nav-link" href="#">Entreprises</a>
+      							 <a class="nav-link" href="{{path('pro_stage_acceuil')}}">Accueil<span class="sr-only">(current)</span></a>
       						</li>
                   <li class="nav-item">
-      							 <a class="nav-link" href="#">Formations</a>
+      							 <a class="nav-link" href="{{path('pro_stage_offres_de_stages')}}">Offres de stage</a>
+      						</li>
+      						<li class="nav-item">
+      							 <a class="nav-link" href="{{path('pro_stage_entreprises')}}">Entreprises</a>
+      						</li>
+                  <li class="nav-item">
+      							 <a class="nav-link" href="{{path('pro_stage_formations')}}">Formations</a>
       						</li>
       					</ul>
       					<ul class="navbar-nav ml-md-auto">
       						<li class="nav-item active">
-      							 <a class="nav-link" href="#">Link <span class="sr-only">(current)</span></a>
       						</li>
       					</ul>
       				</div>
@@ -54,12 +56,10 @@
           <div class="col-md-12">
             <div class="card">
               <h5 class="card-header">
-                Card title
+                {% block titrePage %} TITRE {% endblock %}
               </h5>
               <div class="card-body">
-                <p class="card-text">
-                  Card content
-                </p>
+                {% block contenuPage %} CONTENT {% endblock %}
               </div>
             </div>
           </div>
@@ -70,7 +70,13 @@
         {% block footer %}
         <div class="row">
           <div class="col-md-12">
-            -- FOOTER --
+            <p class="text-secondary">
+              Site réalisé avec les frameworks
+              <a href="https://Symfony.com/"> Symfony</a>
+              et
+              <a href="https://getbootstrap.com/"> Bootstrap</a>
+              .
+            </p>
           </div>
         </div>
         {% endblock %}
